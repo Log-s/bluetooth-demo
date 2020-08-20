@@ -43,13 +43,13 @@ while True:
         break
 
     elif text == "file": # runs the file transfer routine
+        s.send(str.encode("FILE_TRANSFER"))
         path = input("Enter path to file : ")
         # cheking if the file exists
         while not os.path.isfile(path):
             path = input("Enter path to file : ")
         # reads the file
         file_name, file_byte = read_file(path)
-        s.send(str.encode("FILE_TRANSFER"))
         s.send(str.encode(file_name))
         s.send(file_byte)
 
