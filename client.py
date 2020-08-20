@@ -27,11 +27,12 @@ s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM
 s.connect((serverMACAddress,port))
 print("[+] Connected to server, ready to transfer data")
 print()
-print(  "[!] ===\n\
+print(  "[!]    ===     ===     ===     ===     ===     ===\n\
         Enter any text to print it on the server's screen\n\
         Commands :\n\
             - quit : quits the program and closes the socket\n\
-            - file : runs the file transfer routine")
+            - file : runs the file transfer routine\n\
+        ===     ===     ===     ===     ===     ===")
 
 # Main loop for message transfering
 while True:

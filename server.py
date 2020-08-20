@@ -49,6 +49,7 @@ try:
 
         if data: # if data is not None
             if data.decode() == "FILE_TRANSFER": # if the file transfer protocol is enganged
+                print("[+] File transfer started")
                 # gets the file name
                 file_name = client.recv(size).decode()
                 # gets the file
