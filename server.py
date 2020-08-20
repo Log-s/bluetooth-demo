@@ -50,7 +50,7 @@ try:
     while True:
 
         data = client.recv(size)
-        print(data)
+        
         if data: # if data is not None
             if data.decode() == "FILE_TRANSFER": # if the file transfer protocol is enganged
                 print("[+] File transfer started")
@@ -66,7 +66,7 @@ try:
                     data = client.recv(size)
                     count += 1
                     print(count, data)
-                
+                print ("OUT")
                 # write the file on the server
                 try:
                     write_file(file_name, bytes_file)
