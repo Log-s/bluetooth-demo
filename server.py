@@ -50,7 +50,7 @@ try:
     while True:
 
         data = client.recv(size)
-        print("test")
+        print(data)
         if data: # if data is not None
             if data.decode() == "FILE_TRANSFER": # if the file transfer protocol is enganged
                 print("[+] File transfer started")
