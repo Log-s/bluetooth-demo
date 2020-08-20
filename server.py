@@ -1,4 +1,4 @@
-import socket
+import socket, os.path
 
 def close_socket(client, s):
     """
@@ -18,7 +18,11 @@ def write_file(file_name, byte_file):
         - file_name : the file name
         - byte_file : file decomposed as bytes
     """
-    path = "transferd_files"
+    path = "transferd_files/"
+    # if the folder doesn't exists yet, creates it
+    if not os.path.isdir(path):
+        os.mkdir(path)
+    # writes the file
     with open(path+file_name, "wb") as f:
         f.write(byte_file)
 
