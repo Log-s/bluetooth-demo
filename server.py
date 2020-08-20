@@ -3,7 +3,7 @@ import socket
 # local MAC address
 server_MAC = '40:e2:30:df:3d:62'
 # arbitrary chosen port (needs to be the same for the client)
-port = 3
+port = 1
 # Data block size
 size = 1024
 

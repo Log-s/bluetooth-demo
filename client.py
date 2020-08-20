@@ -3,7 +3,7 @@ import socket
 # server MAC address
 serverMACAddress = '40:e2:30:df:3d:62'
 # server port
-port = 2
+port = 1
 
 # creating socket and connecting it to the server
 s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
