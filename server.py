@@ -60,9 +60,12 @@ try:
                 # gets the file
                 bytes_file = b''
                 data = client.recv(size)
+                count = 0
                 while data:
                     bytes_file += data
                     data = client.recv(size)
+                    count += 1
+                    print(count, data)
                 
                 # write the file on the server
                 try:
