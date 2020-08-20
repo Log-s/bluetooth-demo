@@ -22,7 +22,7 @@ try:
     while True:
         data = client.recv(size)
         # decode bytes to text
-        data = str.decode(data)
+        data = data.decode()
         if data:
             print(data)
             # echo back response to server
