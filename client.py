@@ -47,6 +47,7 @@ while True:
         path = input("Enter path to file : ")
         # cheking if the file exists
         while not os.path.isfile(path):
+            print("[-] Error : file doesn't exists")
             path = input("Enter path to file : ")
         # reads the file
         file_name, file_byte = read_file(path)
