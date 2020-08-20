@@ -37,14 +37,17 @@ try:
             # echo back response to server
             client.send(data)
 
+# Exception when the server is closed by keybord exception
 except KeyboardInterrupt:	
-    print("[!] Keybord Interruption : closing socket")	
+    print("\n[!] Keybord Interruption : closing socket")	
     close_socket(client, s)
 
+# Exception when the host closes the connection
 except ConnectionResetError:
     print("[!] Connection aborted by remote host : closing socket")
     close_socket(client, s)
 
+# Other exception
 except:
     print("[-] Error : closing socket")
     close_socket(client, s)
