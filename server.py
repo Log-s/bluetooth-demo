@@ -22,7 +22,8 @@ try:
     while True:
         data = client.recv(size)
         if data:
-            print(data.decode())
+            # printing data
+            print("msg :",data.decode())
             # echo back response to server
             client.send(data)
 
@@ -32,8 +33,8 @@ except KeyboardInterrupt:
         client.close()
     s.close()
 
-"""except:
+except:
     print("[!] Closing socket")
     if client:
         client.close()
-    s.close()"""
+    s.close()
