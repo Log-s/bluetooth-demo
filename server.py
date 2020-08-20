@@ -34,8 +34,8 @@ except KeyboardInterrupt:
         client.close()
     s.close()
 
-except:
+"""except:
     print("[!] Closing socket")
     if client:
         client.close()
-    s.close()
+    s.close()"""
