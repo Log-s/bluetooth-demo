@@ -1,5 +1,6 @@
 import socket, os.path
 
+
 def close_socket(client, s):
     """
     This function closes a socket
@@ -10,6 +11,7 @@ def close_socket(client, s):
     if client:
         client.close()
     s.close()
+
 
 def write_file(file_name, byte_file):
     """
@@ -25,6 +27,20 @@ def write_file(file_name, byte_file):
     # writes the file
     with open(path+file_name, "wb") as f:
         f.write(byte_file)
+
+
+def recvall(socket, timeout=2):
+    """
+    receives all the data sent before the timeout is reached
+    (timer is reset every time data is received)
+    $ param :
+        - socket    : socket used for receiving the data
+        - timeout   : timeout value in seconds (default : 2s)
+    $ return :
+        - data      : the total data received
+    """
+    pass
+
 
 # local MAC address
 server_MAC = '40:e2:30:df:3d:62'
@@ -50,7 +66,7 @@ try:
     while True:
 
         data = client.recv(size)
-        
+
         if data: # if data is not None
             if data.decode() == "FILE_TRANSFER": # if the file transfer protocol is enganged
                 print("[+] File transfer started")

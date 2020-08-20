@@ -6,6 +6,11 @@ This set of programms allows a client to send data (SLT files for example) to a 
 
 Being a demo, there is no user configuration possibility. MAC addresses will have to be changed directly into the code.
 
+Noticable things :
+-
+I learned a lot about sockets, bluetooth and other things working on this demo.
+
+I implemented a method that I felt was missing in the socket module (```revcall()```). This method allows to receive a large set of data regardless of it's size, while data is received, and the time between packets doesn't exceed the timeout. Very practical to send and receive STL files for example.
 
 Requirements :
 -
