@@ -58,7 +58,12 @@ try:
                 file_name = client.recv(size).decode()
                 print(file_name)
                 # gets the file
-                bytes_file = client.recv(file_size)
+                bytes_file = b''
+                data = client.recv(size)
+                while data:
+                    bytes_file += data
+                    data = client.recv(size)
+                
                 # write the file on the server
                 try:
                     write_file(file_name, bytes_file)
