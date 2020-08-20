@@ -32,7 +32,7 @@ server_MAC = '40:e2:30:df:3d:62'
 port = 1
 # Data block size
 size = 1024
-file_size = 10240 # 10x greater the regular size
+file_size = 1000000 # 10x greater the regular size
 
 # creating socket and connecting it to the server
 s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
