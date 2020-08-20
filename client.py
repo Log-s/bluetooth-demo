@@ -12,8 +12,10 @@ print("[+] Connection to the server made")
 
 # sending text to the server
 while 1:
+    # getting input
     text = input()
     if text == "quit":
         break
+    # seding input
     s.send(text)
 s.close()
