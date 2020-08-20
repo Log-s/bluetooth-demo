@@ -51,7 +51,7 @@ while True:
         # reads the file
         file_name, file_byte = read_file(path)
         s.send(str.encode(file_name))
-        s.send(file_byte)
+        s.sendall(file_byte)
 
     else: # Send text data
         s.send(str.encode(text))
