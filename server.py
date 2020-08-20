@@ -61,7 +61,7 @@ try:
                 bytes_file = b''
                 data = client.recv(size)
                 count = 0
-                while data:
+                while data != b'':
                     bytes_file += data
                     data = client.recv(size)
                     count += 1
