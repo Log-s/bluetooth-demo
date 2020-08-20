@@ -52,7 +52,7 @@ try:
         data = client.recv(size)
 
         if data: # if data is not None
-            if unicode(data.decode(), errors="ignore") == "FILE_TRANSFER": # if the file transfer protocol is enganged
+            if data.decode() == "FILE_TRANSFER": # if the file transfer protocol is enganged
                 print("[+] File transfer started")
                 # gets the file name
                 file_name = client.recv(size).decode()
