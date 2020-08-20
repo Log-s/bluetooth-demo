@@ -82,6 +82,6 @@ except ConnectionResetError:
     close_socket(client, s)
 
 # Other exception
-except:
+"""except:
     print("[-] Error : closing socket")
-    close_socket(client, s)
+    close_socket(client, s)"""
