@@ -1,5 +1,15 @@
 import socket
 
+def close_socket(client, s):
+    """
+    This function closes a socket
+    client  : remote client
+    s       : socket
+    """
+    if client:
+        client.close()
+    s.close()
+
 # local MAC address
 server_MAC = '40:e2:30:df:3d:62'
 # arbitrary chosen port (needs to be the same for the client)
@@ -29,12 +39,12 @@ try:
 
 except KeyboardInterrupt:	
     print("[!] Keybord Interruption : closing socket")	
-    if client:
-        client.close()
-    s.close()
+    close_socket(client, s)
 
-"""except:
-    print("[!] Closing socket")
-    if client:
-        client.close()
-    s.close()"""
+except ConnectionResetError:
+    print("[!] Connection aborted by remote host : closing socket")
+    close_socket(client, s)
+
+except:
+    print("[-] Error : closing socket")
+    close_socket(client, s)
