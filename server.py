@@ -21,10 +21,8 @@ try:
     print("[+] Remote host connected")
     while True:
         data = client.recv(size)
-        # decode bytes to text
-        data = data.decode()
         if data:
-            print(data)
+            print(data.decode())
             # echo back response to server
             client.send(data)
 
