@@ -3,12 +3,24 @@ import socket
 def close_socket(client, s):
     """
     This function closes a socket
-    client  : remote client
-    s       : socket
+    § param :
+        - client  : remote client
+        - s       : socket
     """
     if client:
         client.close()
     s.close()
+
+def write_file(file_name, byte_file):
+    """
+    writes a byte file on the server
+    § param :
+        - file_name : the file name
+        - byte_file : file decomposed as bytes
+    """
+    path = "transferd_files"
+    with open(path+file_name, "wb") as f:
+        f.write(byte_file)
 
 # local MAC address
 server_MAC = '40:e2:30:df:3d:62'
@@ -16,6 +28,7 @@ server_MAC = '40:e2:30:df:3d:62'
 port = 1
 # Data block size
 size = 1024
+file_size = 10240 # 10x greater the regular size
 
 # creating socket and connecting it to the server
 s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
@@ -29,20 +42,36 @@ client = None
 try:
     client, address = s.accept()
     print("[+] Remote host connected")
+
     while True:
+
         data = client.recv(size)
-        if data:
-            # printing data
-            print("msg :",data.decode())
-            # echo back response to server
-            client.send(data)
+
+        if data: # if data is not None
+            if data.decode() == "FILE_TRANSFER": # if the file transfer protocol is enganged
+                # gets the file name
+                file_name = client.recv(size).decode()
+                # gets the file
+                bytes_file = client.recv(file_size)
+                # write the file on the server
+                try:
+                    write_file(file_name, bytes_file)
+                    print("[+] File writen successfuly")
+                except:
+                    print("[-] Error while writing file")
+
+            else:
+                # printing data
+                print("msg :",data.decode())
+                # echo back response to server
+                client.send(data)
 
 # Exception when the server is closed by keybord exception
 except KeyboardInterrupt:	
     print("\n[!] Keybord Interruption : closing socket")	
     close_socket(client, s)
 
-# Exception when the host closes the connection
+# Exception when the remote host closes the connection
 except ConnectionResetError:
     print("[!] Connection aborted by remote host : closing socket")
     close_socket(client, s)

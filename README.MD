@@ -10,10 +10,11 @@ Being a demo, there is no user configuration possibility. MAC addresses will hav
 Requirements :
 -
 * python3
-* pybluez : ```sudo apt-get install libbluetooth-dev && python3 -m pip install pybluez```
 
 Usage
 -
+The 2 computers that will communicate will have to be connected through bluetooth.
+
 Run the server on one bluetooth equiped device, and replace the MAC address with the devices address (on windows ```ipconfig /all```) : ```python3 server.py```
 
 Run the client on an other bluetooth equiped device : ```python3 client.py```
