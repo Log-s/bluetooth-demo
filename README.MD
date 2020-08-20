@@ -10,7 +10,7 @@ Being a demo, there is no user configuration possibility. MAC addresses will hav
 Requirements :
 -
 * python3
-* pybluez : ```python3 -m pip install pybluez```
+* pybluez : ```sudo apt-get install libbluetooth-dev && python3 -m pip install pybluez```
 
 Usage
 -

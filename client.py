@@ -1,21 +1,23 @@
-import bluetooth
+import socket
 
-# the server's MAC address
-server_MAC = '80:32:53:07:BA:8D'
-# port chosen on the server
-port = 1
+# server MAC address
+serverMACAddress = '40:e2:30:df:3d:62'
+# server port
+port = 2
 
-# creating the socket and binding it
-s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
-s.connect((server_MAC, port))
-print("[+] Connection to the server made")
+# creating socket and connecting it to the server
+s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
+s.connect((serverMACAddress,port))
+print("[+] Connected to server, ready to transfer data")
 
-# sending text to the server
-while 1:
-    # getting input
-    text = input()
+# Main loop for message transfering
+while True:
+    # get text data
+    text = input("Enter msg : ")
     if text == "quit":
         break
-    # seding input
-    s.send(text)
+    # Send text data
+    s.send(str.encode(text))
+
+# Closing socket
 s.close()
