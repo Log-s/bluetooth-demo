@@ -52,10 +52,11 @@ try:
         data = client.recv(size)
 
         if data: # if data is not None
-            if data.decode() == "FILE_TRANSFER": # if the file transfer protocol is enganged
+            if unicode(data.decode(), errors="ignore") == "FILE_TRANSFER": # if the file transfer protocol is enganged
                 print("[+] File transfer started")
                 # gets the file name
                 file_name = client.recv(size).decode()
+                print(file_name)
                 # gets the file
                 bytes_file = client.recv(file_size)
                 # write the file on the server
