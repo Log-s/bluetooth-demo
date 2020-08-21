@@ -39,7 +39,19 @@ def print_help():
 
 
 def encrypt_data(data):
-    pass
+    """
+    Encrypts data to be transferd to server in a secure way
+    § param :
+        - data : bytes to be encrypted
+    § return :
+        - encrypted_data
+    """
+    # create object to encrypt data with a key that needs to be the same on the server side
+    crypter = AES.new("SuperSecretKey!!", AES.MODE_ECB)
+    # pads the data to match a multiple of 16 bytes, encrypts the data using AES
+    # and encodes it to b64 to shrink the data
+    encrypted_data = base64.b64encode(crypter.encrypt(pad(data,16)))
+    return encrypted_data
 
 
 # ---------- ---- ---------- ##
@@ -84,7 +96,7 @@ while True:
         s.sendall(encrypt_data(file_byte))
 
     else: # Send text data
-        s.send(str.encode(text))
+        s.send(encrypt_data(str.encode(text)))
 
 # Closing socket
 s.close()
