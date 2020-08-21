@@ -35,6 +35,11 @@ def print_help():
             - /file : runs the file transfer routine")
 
 
+
+def encrypt_data(data):
+    pass
+
+
 # ---------- ---- ---------- ##
 
 

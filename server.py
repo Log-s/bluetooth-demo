@@ -77,6 +77,12 @@ def recvall(socket, timeout=2):
     socket.setblocking(1)
     return data
 
+
+
+def decrypt_data(data):
+    pass
+
+
 ## ---------- ---- ---------- ##
 
 
@@ -141,8 +147,8 @@ except ConnectionResetError:
     close_socket(client, s)
 
 # Other exception
-"""except:
+except:
     print("[-] Error : closing socket")
-    close_socket(client, s)"""
+    close_socket(client, s)
 
 ## ---------- ---- ---------- ##
