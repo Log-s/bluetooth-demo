@@ -114,7 +114,7 @@ try:
                 print("[+] File transfer started")
                 # gets the file name
                 file_name = client.recv(size).decode()
-                print(file_name)
+                print("[!] Transfering :",file_name)
                 # gets the file
                 bytes_file = recvall(client)
                 # write the file on the server
@@ -145,4 +145,4 @@ except ConnectionResetError:
     print("[-] Error : closing socket")
     close_socket(client, s)"""
 
-## ---------- --- ---------- ##
+## ---------- ---- ---------- ##

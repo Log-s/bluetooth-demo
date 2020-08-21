@@ -1,5 +1,10 @@
 import socket, os.path
 
+
+
+## ---------- functions ---------- ##
+
+
 def read_file(path):
     """
     reads a file, and converts its to bytes, to allow bluetooth transfer
@@ -17,6 +22,26 @@ def read_file(path):
     return name,byte_file
 
 
+def print_help():
+    """
+    prints the help message with the available commands
+    """
+    print()
+    print(  "[!]\n\
+        Enter any text to print it on the server's screen\n\
+        Commands :\n\
+            - /help : prints this help\n\
+            - /quit : quits the program and closes the socket\n\
+            - /file : runs the file transfer routine")
+
+
+# ---------- ---- ---------- ##
+
+
+
+## ---------- main ---------- ##
+
+
 # server MAC address
 serverMACAddress = '40:e2:30:df:3d:62'
 # server port
@@ -26,23 +51,20 @@ port = 1
 s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
 s.connect((serverMACAddress,port))
 print("[+] Connected to server, ready to transfer data")
-print()
-print(  "[!]    ===     ===     ===     ===     ===     ===\n\
-        Enter any text to print it on the server's screen\n\
-        Commands :\n\
-            - quit : quits the program and closes the socket\n\
-            - file : runs the file transfer routine\n\
-        ===     ===     ===     ===     ===     ===")
+print_help()
 
 # Main loop for message transfering
 while True:
     # get text data or instruction
-    text = input("Enter msg : ")
+    text = input("> ")
 
-    if text == "quit": # quits the program
+    if text == "/quit": # quits the program
         break
 
-    elif text == "file": # runs the file transfer routine
+    elif text == "/help": # prints the help screen
+        print_help()
+
+    elif text == "/file": # runs the file transfer routine
         s.send(str.encode("FILE_TRANSFER"))
         path = input("Enter path to file : ")
         # cheking if the file exists
@@ -59,3 +81,5 @@ while True:
 
 # Closing socket
 s.close()
+
+## ---------- ---- ---------- ##
