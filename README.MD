@@ -20,9 +20,9 @@ I implemented a method that I felt was missing in the socket module (```recvall(
 
 Requirements :
 -
-* python3
-* pycrypto
-* pycryptodome
+* python3 : ```sudo apt-get install python3```
+* pycrypto : ```pip3 install pycrypto```
+* pycryptodome : ```pip3 install pycryptodome```
 
 Usage
 -
