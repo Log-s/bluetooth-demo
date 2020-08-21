@@ -1,6 +1,10 @@
 import socket, os.path, time
 
 
+
+## ---------- functions ---------- ##
+
+
 def close_socket(client, s):
     """
     This function closes a socket
@@ -11,6 +15,7 @@ def close_socket(client, s):
     if client:
         client.close()
     s.close()
+
 
 
 def write_file(file_name, byte_file):
@@ -29,6 +34,7 @@ def write_file(file_name, byte_file):
         f.write(byte_file)
 
 
+
 def recvall(socket, timeout=2):
     """
     receives all the data sent before the timeout is reached
@@ -45,6 +51,7 @@ def recvall(socket, timeout=2):
 
     # receiving loop
     while True:
+        print("START")
         # handle timeout
         if time.time() - begin > timeout:
             break
@@ -55,10 +62,18 @@ def recvall(socket, timeout=2):
                 data_part = socket.recv(size)
                 if data_part:
                     data.append(data_part)
+                    print("RECV")
             except:
                 pass
     
+    print("END")
     return "".join(data)
+
+## ---------- ---- ---------- ##
+
+
+
+## ---------- main ---------- ##
 
 
 # local MAC address
@@ -121,3 +136,5 @@ except ConnectionResetError:
 """except:
     print("[-] Error : closing socket")
     close_socket(client, s)"""
+
+## ---------- --- ---------- ##
