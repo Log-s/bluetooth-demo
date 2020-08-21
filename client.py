@@ -70,7 +70,7 @@ while True:
         print_help()
 
     elif text == "/file": # runs the file transfer routine
-        s.send(str.encode("FILE_TRANSFER"))
+        s.send(encrypt_data(str.encode("FILE_TRANSFER")))
         path = input("Enter path to file : ")
         # cheking if the file exists
         while not os.path.isfile(path):
@@ -78,8 +78,8 @@ while True:
             path = input("Enter path to file : ")
         # reads the file
         file_name, file_byte = read_file(path)
-        s.send(str.encode(file_name))
-        s.sendall(file_byte)
+        s.send(encrypt_data(str.encode(file_name)))
+        s.sendall(encrypt_data(file_byte))
 
     else: # Send text data
         s.send(str.encode(text))
