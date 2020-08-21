@@ -75,6 +75,7 @@ def recvall(socket, timeout=2):
                 pass
     
     print("END")
+    socket.setblocking(1)
     return data
 
 ## ---------- ---- ---------- ##
