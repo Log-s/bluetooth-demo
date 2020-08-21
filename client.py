@@ -47,7 +47,7 @@ def encrypt_data(data):
         - encrypted_data
     """
     # create object to encrypt data with a key that needs to be the same on the server side
-    crypter = AES.new("SuperSecretKey!!", AES.MODE_ECB)
+    crypter = AES.new("SuperSecretKey!!".encode(), AES.MODE_ECB)
     # pads the data to match a multiple of 16 bytes, encrypts the data using AES
     # and encodes it to b64 to shrink the data
     encrypted_data = base64.b64encode(crypter.encrypt(pad(data,16)))

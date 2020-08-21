@@ -90,7 +90,7 @@ def decrypt_data(data):
         - decrypted_data : decrypted bytes
     """
     # create object to encrypt data with a key that needs to be the same on the client side
-    decrypter = AES.new("SuperSecretKey!!", AES.MODE_ECB)
+    decrypter = AES.new("SuperSecretKey!!".encode(), AES.MODE_ECB)
     # decodes the base64, decrypts the data and remove the padding bytes
     decrypted_data = unpad(decrypter.decrypt(base64.b64decode(data)), 16)
     return decrypted_data
