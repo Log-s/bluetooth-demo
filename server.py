@@ -1,4 +1,4 @@
-import socket, os.path
+import socket, os.path, time
 
 
 def close_socket(client, s):
@@ -39,7 +39,26 @@ def recvall(socket, timeout=2):
     $ return :
         - data      : the total data received
     """
-    pass
+    data_part = b""
+    data = []
+    begin = time.time()
+
+    # receiving loop
+    while True:
+        # handle timeout
+        if time.time() - begin > timeout:
+            break
+
+        # handle receiving data
+        else:
+            try:
+                data_part = socket.recv(size)
+                if data_part:
+                    data.append(data_part)
+            except:
+                pass
+    
+    return "".join(data)
 
 
 # local MAC address
@@ -74,15 +93,7 @@ try:
                 file_name = client.recv(size).decode()
                 print(file_name)
                 # gets the file
-                bytes_file = b''
-                data = client.recv(size)
-                count = 0
-                while data != b'':
-                    bytes_file += data
-                    data = client.recv(size)
-                    count += 1
-                    print(count, data)
-                print ("OUT")
+                bytes_file = recvall(s)
                 # write the file on the server
                 try:
                     write_file(file_name, bytes_file)
