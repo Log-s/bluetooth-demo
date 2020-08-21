@@ -72,7 +72,6 @@ def recvall(socket, timeout=2):
                     print("ELSE")
                     time.sleep(0.1)
             except:
-                print("EXCEPT")
                 pass
     
     print("END")
