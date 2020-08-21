@@ -2,6 +2,8 @@ Why this project ?
 -
 This project acts as a demo for a IT internship interview for **winnove medical**
 
+![README_IMAGE](https://github.com/Log-s/bluetooth-demo/blob/master/ressources/readme_image.jpg)
+
 A bit of explanation :
 -
 The bluetooth protocol uses MAC addresses to find the right host to communicate with, unlike TCP/IP protocole wich uses IP addresses. IP addresses are dynamicaly allocated (your local IP address may change from your home network to your friend's home network), while MAC adresses are physical addresses, more like your home address.
@@ -29,8 +31,11 @@ Run the server on one bluetooth equiped device, and replace the MAC address with
 Run the client on an other bluetooth equiped device (and replace once again the MAC address, with the same as the server): ```python3 client.py```
 
 On the client side, you can transfer regular text data you directly type in, or files you have on the client's local drive. Transferd files will be stored in the servers */transferd_files* folder.
+<<<<<<< HEAD
 
 TODO :
 -
 * Data transfer encryption
 * Client side exceptions
+=======
+>>>>>>> c17cdaa3a1d739b39b163fca91066bad2c16eac9
