@@ -2,6 +2,8 @@ Why this project ?
 -
 This project acts as a demo for a IT internship interview for **winnove medical**
 
+![README_IMAGE](https://github.com/Log-s/bluetooth-demo/blob/master/ressources/readme_image.jpg)
+
 A bit of explanation :
 -
 The bluetooth protocol uses MAC addresses to find the right host to communicate with, unlike TCP/IP protocole wich uses IP addresses. IP addresses are dynamicaly allocated (your local IP address may change from your home network to your friend's home network), while MAC adresses are physical addresses, more like your home address.
