@@ -146,8 +146,6 @@ try:
             else:
                 # printing data
                 print("msg :",data.decode())
-                # echo back response to client
-                client.send(data)
 
 # Exception when the server is closed by keybord exception
 except KeyboardInterrupt:	
