@@ -126,16 +126,16 @@ try:
 
     while True:
 
-        data = client.recv(size)
+        data = decrypt_data(client.recv(size))
 
         if data: # if data is not None
             if data.decode() == "FILE_TRANSFER": # if the file transfer protocol is enganged
                 print("[+] File transfer started")
                 # gets the file name
-                file_name = client.recv(size).decode()
+                file_name = decrypt_data(client.recv(size)).decode()
                 print("[!] Transfering :",file_name)
                 # gets the file
-                bytes_file = recvall(client)
+                bytes_file = decrypt_data(recvall(client))
                 # write the file on the server
                 try:
                     write_file(file_name, bytes_file)
@@ -146,7 +146,7 @@ try:
             else:
                 # printing data
                 print("msg :",data.decode())
-                # echo back response to server
+                # echo back response to client
                 client.send(data)
 
 # Exception when the server is closed by keybord exception
