@@ -52,7 +52,7 @@ def recvall(socket, timeout=2):
     data = b""
     begin = time.time()
 
-    # set to non blocking to avoid wainting on recv() instruction
+    # set to non blocking to avoid waiing on recv() instruction
     socket.setblocking(0)
 
     # receiving loop
@@ -109,7 +109,6 @@ server_MAC = '40:e2:30:df:3d:62'
 port = 1
 # Data block size
 size = 1024
-file_size = 1000000 # 10x greater the regular size
 
 # creating socket and connecting it to the server
 s = socket.socket(socket.AF_BLUETOOTH, socket.SOCK_STREAM, socket.BTPROTO_RFCOMM)
