@@ -1,4 +1,6 @@
-import socket, os.path
+import socket, os.path, base64
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
 
 
 

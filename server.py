@@ -1,5 +1,6 @@
-import socket, os.path, time
-
+import socket, os.path, time, base64
+from Crypto.Cipher import AES
+from Crypto.Util.Padding import pad, unpad
 
 
 ## ---------- functions ---------- ##
