@@ -21,6 +21,8 @@ I implemented a method that I felt was missing in the socket module (```recvall(
 Requirements :
 -
 * python3
+* pycrypto
+* pycryptodome
 
 Usage
 -
@@ -31,11 +33,8 @@ Run the server on one bluetooth equiped device, and replace the MAC address with
 Run the client on an other bluetooth equiped device (and replace once again the MAC address, with the same as the server): ```python3 client.py```
 
 On the client side, you can transfer regular text data you directly type in, or files you have on the client's local drive. Transferd files will be stored in the servers */transferd_files* folder.
-<<<<<<< HEAD
 
 TODO :
 -
 * Data transfer encryption
 * Client side exceptions
-=======
->>>>>>> c17cdaa3a1d739b39b163fca91066bad2c16eac9
