@@ -60,7 +60,7 @@ def recvall(socket, timeout=2):
         else:
             try:
                 print("TRY")
-                data_part = socket.recv(size)
+                data_part = socket.recv(1024)
                 if data_part:
                     print("IF")
                     begin = time.time()
@@ -115,7 +115,7 @@ try:
                 file_name = client.recv(size).decode()
                 print(file_name)
                 # gets the file
-                bytes_file = recvall(s)
+                bytes_file = recvall(client)
                 # write the file on the server
                 try:
                     write_file(file_name, bytes_file)
