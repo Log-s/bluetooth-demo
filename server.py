@@ -46,8 +46,10 @@ def recvall(socket, timeout=2):
         - data      : the total data received
     """
     data_part = b""
-    data = []
+    data = b""
     begin = time.time()
+
+    socket.setblocking(0)
 
     # receiving loop
     while True:
@@ -64,7 +66,7 @@ def recvall(socket, timeout=2):
                 if data_part:
                     print("IF")
                     begin = time.time()
-                    data.append(data_part)
+                    data += data_part
                     print("RECV")
                 else:
                     print("ELSE")
@@ -74,7 +76,7 @@ def recvall(socket, timeout=2):
                 pass
     
     print("END")
-    return "".join(data)
+    return data
 
 ## ---------- ---- ---------- ##
 
