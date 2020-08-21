@@ -59,14 +59,18 @@ def recvall(socket, timeout=2):
         # handle receiving data
         else:
             try:
+                print("TRY")
                 data_part = socket.recv(size)
                 if data_part:
+                    print("IF")
                     begin = time.time()
                     data.append(data_part)
                     print("RECV")
                 else:
+                    print("ELSE")
                     time.sleep(0.1)
             except:
+                print("EXCEPT")
                 pass
     
     print("END")
