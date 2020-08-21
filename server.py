@@ -45,15 +45,16 @@ def recvall(socket, timeout=2):
     $ return :
         - data      : the total data received
     """
+    # variables
     data_part = b""
     data = b""
     begin = time.time()
 
+    # set to non blocking to avoid wainting on recv() instruction
     socket.setblocking(0)
 
     # receiving loop
     while True:
-        print("START")
         # handle timeout
         if time.time() - begin > timeout:
             break
@@ -61,20 +62,18 @@ def recvall(socket, timeout=2):
         # handle receiving data
         else:
             try:
-                print("TRY")
                 data_part = socket.recv(1024)
                 if data_part:
-                    print("IF")
+                    # reset timer
                     begin = time.time()
                     data += data_part
-                    print("RECV")
                 else:
-                    print("ELSE")
+                    # sleep to avoid traffic overflow
                     time.sleep(0.1)
             except:
                 pass
     
-    print("END")
+    # set socket back to blocking
     socket.setblocking(1)
     return data
 
