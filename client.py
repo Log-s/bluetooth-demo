@@ -1,6 +1,7 @@
 import socket, os.path, base64
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
+from zipfile import ZipFile
 
 
 
@@ -40,7 +41,7 @@ def print_help():
 
 def encrypt_data(data):
     """
-    Encrypts data to be transferd to server in a secure way
+    Encrypts data to be transfered to server in a secure way
     § param :
         - data : bytes to be encrypted
     § return :
@@ -52,6 +53,34 @@ def encrypt_data(data):
     # and encodes it to b64 to shrink the data
     encrypted_data = base64.b64encode(crypter.encrypt(pad(data,16)))
     return encrypted_data
+
+
+
+def compress_files(files):
+    """
+    compresses all the files passed as argument into a single zipfile
+    usefull to send several files at once
+    § param
+        - files     : string list, containing the path of the files
+    $ return
+        - zipfile   : zip object
+    """
+    valid = True
+    for file in files:
+        if not os.path.isfile(file):
+            valid = False
+    
+    file_path = "files_compressed.zip"
+
+    if valid:
+        with ZipFile(file_path,"w") as zip:
+            for file in files:
+                zip.write(file)
+    else:
+        file_path = "Error"
+
+    return file_path
+
 
 
 # ---------- ---- ---------- ##
@@ -85,15 +114,36 @@ while True:
 
     elif text == "/file": # runs the file transfer routine
         s.send(encrypt_data(str.encode("FILE_TRANSFER")))
-        path = input("Enter path to file : ")
-        # cheking if the file exists
-        while not os.path.isfile(path):
-            print("[-] Error : file doesn't exists")
-            path = input("Enter path to file : ")
+        path = input("Enter path to file(s) : ")
+        # getting a split list of the paths
+        path_list = path.replace(" ", "").split(",")
+        # boolean value changed if there is an incorrect path
+        sendready = True
+        # defining the protocol header
+        header = ""
+        if len(path_list) > 1:
+            header = "ZIP"
+            path = compress_files(path_list)
+            if path == "Error":
+                sendready = False
+
+        else:
+            header = "FILE"
+            # cheking if the file exists
+            if not os.path.isfile(path):
+                print("[-] Error : file doesn't exists")
+                sendready = False
+                
         # reads the file
-        file_name, file_byte = read_file(path)
-        s.send(encrypt_data(str.encode(file_name)))
-        s.sendall(encrypt_data(file_byte))
+        if sendready :
+            s.send(encrypt_data(header.encode())) 
+            file_name, file_byte = read_file(path)
+            s.send(encrypt_data(str.encode(file_name)))
+            s.sendall(encrypt_data(file_byte))
+
+        # cleanup temporary zipfiles
+        if header == "ZIP":
+            os.remove(path)
 
     else: # Send text data
         s.send(encrypt_data(str.encode(text)))

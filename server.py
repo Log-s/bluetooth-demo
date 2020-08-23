@@ -1,6 +1,7 @@
 import socket, os.path, time, base64
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad, unpad
+from zipfile import ZipFile
 
 
 
@@ -27,7 +28,7 @@ def write_file(file_name, byte_file):
         - file_name : the file name
         - byte_file : file decomposed as bytes
     """
-    path = "transferd_files/"
+    path = "transfered_files/"
     # if the folder doesn't exists yet, creates it
     if not os.path.isdir(path):
         os.mkdir(path)
@@ -83,7 +84,7 @@ def recvall(socket, timeout=2):
 
 def decrypt_data(data):
     """
-    Decrypts data that was transferd to the server
+    Decrypts data that was transfered to the server
     § param :
         - data : encrypted data
     § return :
@@ -130,6 +131,8 @@ try:
         if data: # if data is not None
             if data.decode() == "FILE_TRANSFER": # if the file transfer protocol is enganged
                 print("[+] File transfer started")
+                # receiving header
+                header = decrypt_data(client.recv(size)).decode()
                 # gets the file name
                 file_name = decrypt_data(client.recv(size)).decode()
                 print("[!] Transfering :",file_name)
@@ -141,7 +144,16 @@ try:
                     print("[+] File writen successfuly")
                 except:
                     print("[-] Error while writing file")
-
+                if header == "ZIP":
+                    print("[!] DeZipping file")
+                    with ZipFile("transfered_files/"+file_name, 'r') as zip:
+                        zip.printdir()
+                        try:
+                            zip.extractall("transfered_files/")
+                        except:
+                            print("[-] Error while DeZipping the files")
+                    # cleanup temporary zipfiles
+                    os.remove("transfered_files/"+file_name)
             else:
                 # printing data
                 print("msg :",data.decode())
