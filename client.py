@@ -62,7 +62,7 @@ def encrypt_data(data):
 
 
 # server MAC address
-serverMACAddress = '40:e2:30:df:3d:62'
+serverMACAddress = '80:32:53:07:ba:8d'
 # server port
 port = 1
 
