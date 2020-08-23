@@ -104,7 +104,7 @@ def decrypt_data(data):
 
 
 # local MAC address
-server_MAC = '80:32:53:07:ba:8d'
+server_MAC = '40:e2:30:df:3d:62'
 # arbitrary chosen port (needs to be the same for the client)
 port = 1
 # Data block size
