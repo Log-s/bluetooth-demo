@@ -2,6 +2,8 @@ Why this project ?
 -
 This project acts as a demo for a IT internship interview for **winnove medical**
 
+Video demo is available [here](https://www.youtube.com/watch?v=Tgq_bRQUjx0&feature=youtu.be). The video demonstrates this project and the [bluetooth-demo](https://github.com/Log-s/bluetooth-demo).
+
 ![README_IMAGE](https://github.com/Log-s/bluetooth-demo/blob/master/ressources/readme_image.jpg)
 
 A bit of explanation :
